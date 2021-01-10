@@ -11,11 +11,16 @@ def get_cleaned_id(pre_clean_data):
 
     
 def get_whether_in_vm_master(guild_id, channel_id):
-    in_master = db_gateway().get('voicemaster_master', params={'guild_id': guild_id, 'channel_id': channel_id})
-    return bool(in_master)
+    return True if db_gateway().get('voicemaster_master', params={'guild_id': guild_id, 'channel_id': channel_id}) else False
+    # in_master = db_gateway().get('voicemaster_master', params={'guild_id': guild_id, 'channel_id': channel_id})
+    # return bool(in_master)
 
 
 def get_whether_in_vm_slave(guild_id, channel_id):
-    in_slave = db_gateway().get('voicemaster_slave', params={'guild_id': guild_id, 'channel_id': channel_id})
-    return bool(in_slave)
+    return True if db_gateway().get('voicemaster_slave', params={'guild_id': guild_id, 'channel_id': channel_id}) else False
+    # in_slave = db_gateway().get('voicemaster_slave', params={'guild_id': guild_id, 'channel_id': channel_id})
+    # return bool(in_slave)
 
+
+def user_is_timed_out(guild_id, user_id):
+    return True if db_gateway().get('voicemaster_timeout', params={'guild_id': guild_id, 'user_id': user_id}) else False
